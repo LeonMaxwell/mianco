@@ -1,0 +1,21 @@
+body{
+    width: 99%;
+}
+
+form{
+    margin-top: 7%;
+    margin-left: 25%;
+    margin-right: -30%;
+}
+
+.btn{
+    margin-left: 20%;
+}
+
+.asteriskField{
+    display: none;
+}
+
+.invalid-feedback{
+    display: block;
+}

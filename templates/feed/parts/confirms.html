@@ -1,0 +1,21 @@
+{% extends 'feed/index.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'mianto/confirm/css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<img id="logos" src="{% static 'mianto/feed/img/logo.png' %}" alt="logo">
+<h1><b>Анонимные знакомства без регистрации</b></h1>
+<p>Здесь не требуется регистрация, загрузка фотографий, заполнение анкеты и ее подтверждение. <br>На сайте публикуются анонимные объявления о знакомствах. Все общение идет через email. <br>Ввиду анонимности, на сайте много объявлений секс тематики.</p>
+<p><b>Подтвердите, что вам есть 18 лет, для того что бы перейти к поиску объявлений.</b></p>
+<form class="formCheck" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary custom-btn" name="access" value="allowed">Да, мне есть 18 лет</button>
+    <button type="submit" class="btn btn-primary custom-btn" name="access" value="forbidden">Нет, мне нет 18 лет</button>
+</form>
+
+{% endblock %}

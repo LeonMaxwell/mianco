@@ -1,0 +1,37 @@
+{% extends 'feed/index.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'feed/parts/navigations.html' %}
+
+<div class="ribbon">
+
+    <ul class="premium">
+        {% for part in premium %}
+            <li>
+                <a href="{% url 'miantoviewid' pk=part.pk %}">
+                    <img id="ad_crown" src="{% static 'mianto/feed/img/crown.svg' %}" alt="prem">
+                    <p id="part_data">{{ part.correct_data }}</p>
+                    <p id="part_text">{{ part.text }}</p>
+                    <p id="part_description">{{ part.ad_description }}</p>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    {% for datum, ads in data.items %}
+        <ul>
+            <p>{{ datum }}</p>
+            {% for ad in ads %}
+                <li>
+                    <a href="{% url 'miantoviewid' pk=ad.pk %}">
+                        <p id="part_data">{{ ad.correct_data }}</p>
+                        <p id="part_text">{{ ad.text }}</p>
+                        <p id="part_description">{{ ad.ad_description }}</p>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+</div>
+{% endblock %}

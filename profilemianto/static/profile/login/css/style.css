@@ -1,0 +1,31 @@
+body{
+    width: 99%;
+}
+
+form{
+    padding-left: 40%;
+    padding-top: 10%;
+}
+
+form label{
+    font-family: Ubuntu, serif;
+    font-weight: bold;
+    padding-left: 37%;
+}
+
+form .btn{
+    margin-left: 4%;
+}
+
+.link-reg{
+    margin-top: -4.8%;
+    margin-left: 49%;
+}
+
+.asteriskField{
+    display: none;
+}
+
+.invalid-feedback{
+    display: block;
+}

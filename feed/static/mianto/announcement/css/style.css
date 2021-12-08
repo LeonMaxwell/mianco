@@ -1,0 +1,65 @@
+.block_ad{
+    padding-top: 3%;
+}
+
+.block_ad form{
+    padding-left: 5%;
+    padding-bottom: 2%;
+}
+
+.block_ad form .btn-primary{
+    margin-top: 1%;
+}
+
+.asteriskField{
+    display: none;
+}
+
+.block_ad #label_answ{
+    font-family: Ubuntu, serif;
+    font-size: 1.5vw;
+    padding-left: 20%;
+    padding-top: 2%;
+}
+
+.block_ad #come_back{
+    font-family: Ubuntu, serif;
+    font-size: 1.2vw;
+    text-decoration: none;
+    padding-left: 1.5%;
+}
+
+.block_ad #title_ad{
+    font-family: Ubuntu, serif;
+    font-size: 1.7vw;
+    padding-left: 1.5%;
+    padding-top: 1%;
+}
+
+.block_ad .block_content{
+    display: inline-block;
+    border: 2px solid rgba(241, 241, 241, 0.83);
+    border-radius: 10px;
+    box-shadow: 0 5px 8px rgba(0,0,0,0.05);
+    width: 70%;
+    margin-left: 1.5%;
+    margin-top: -1%;
+    padding: 1.5% 1% 1%;
+}
+
+.block_ad .block_content #text{
+    font-family: Ubuntu, serif;
+    font-size: 1.5vw;
+}
+
+.block_ad .block_content #ad_description{
+    font-family: Ubuntu, serif;
+    color: #888888;
+    font-style: italic;
+    font-size: 1vw;
+}
+
+.block_ad .block_content #ad_date{
+    font-family: Ubuntu, serif;
+    font-size: 1vw;
+}

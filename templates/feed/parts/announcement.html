@@ -1,0 +1,28 @@
+{% extends 'feed/index.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'mianto/announcement/css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    {% include 'feed/parts/navigations.html' %}
+
+    <div class="block_ad">
+        <a href="/" id="come_back">Вернутся к списку</a>
+        <p id="title_ad"><b>Объявление №{{ model.pk }}: {{ model.short_description_for_ad }}</b></p>
+        <br/>
+        <div class="block_content">
+            <p id="ad_text">{{ model.text }}</p>
+            <p id="ad_description">{{ model.ad_description }}</p>
+            <p id="ad_date">{{ model.correct_data }}</p>
+        </div>
+        <p id="label_answ">Напишите ответ на это объявление</p>
+        <form method="post">
+            {% csrf_token %}
+            {% crispy form %}
+        </form>
+    </div>
+{% endblock content %}
+    

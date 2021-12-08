@@ -1,0 +1,35 @@
+{% extends 'feed/index.html' %}
+
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'profile/profileconfirm/css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="block_profile">
+        <p id="title_profile"><b>Профиль №{{ prof.pk }}: {{ prof.login }}</b></p>
+        <br/>
+        <div class="block_content">
+            {% if prof.avatar %}
+                <img src="{{ prof.avatar.url }}" alt="avatar">
+            {% endif %}
+            <p id="title_info"><b>Личная информация пользователя</b></p>
+            <p id="profile_email">Электронная почта: {{ prof.email }}</p>
+            <p id="profile_dob">Дата рождения: {{ prof.dob }}</p>
+            <p id="profile_create">Профиль был создан: {{ prof.created_at }}</p>
+        </div>
+    </div>
+    <div class="btnGroup">
+        <form method="post">
+            {% csrf_token %}
+            {% if prof.is_confirm %}
+                <button type="submit" class="btn btn-danger" name="btnconfirm" value="delete">Удалить</button>
+            {% else %}
+                <button type="submit" class="btn btn-success" name="btnconfirm" value="confirm">Подтвердить</button>
+                <button type="submit" class="btn btn-danger" name="btnconfirm" value="delete">Удалить</button>
+            {% endif %}
+
+        </form>
+    </div>
+{% endblock content %}

@@ -1,0 +1,25 @@
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'mianto/navigation/css/style.css' %}">
+{% endblock style %}
+
+<nav>
+    <a class="logos" href="/"><img src="{% static 'mianto/feed/img/logo.png' %}" alt="logo"></a>
+    <div class="navDo">
+        <a href="{% url 'profilelogin' %}">
+            <img src="{% static 'mianto/feed/img/profile.svg' %}" alt="prof">
+            <b>Профиль</b>
+        </a>
+
+        <a href="{% url 'miantosettings' %}">
+            <img src="{% static 'mianto/feed/img/settings.svg' %}" alt="set">
+            <b>Настройки</b>
+        </a>
+
+        <a href="{% url 'miantocreatead' %}">
+            <img src="{% static 'mianto/feed/img/attach.svg' %}" alt="set">
+            <b>Добавить</b>
+        </a>
+    </div>
+</nav>

@@ -1,0 +1,25 @@
+.logos{
+    cursor: move;
+}
+
+.logos img{
+    width: 9%;
+    margin-top: -1%;
+}
+
+.navDo{
+    margin-left: 63%;
+    margin-top: -6%;
+}
+
+.navDo a{
+    margin-right: 5%;
+    font-family: Ubuntu, serif;
+    text-decoration: none;
+    color: #d13434;
+    font-size: 1.2vw;
+}
+
+.navDo a img{
+    width: 8%;
+}

@@ -1,0 +1,30 @@
+{% extends 'feed/index.html' %}
+{% load static %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'mianto/announcementEdit/css/style.css' %}">
+{% endblock %}
+
+
+{% block content %}
+    <div class="block_ad">
+        <p id="title_ad"><b>Объявление №{{ ads.pk }}: {{ ads.short_description_for_ad }}</b></p>
+        <br/>
+        <div class="block_content">
+            <p id="ad_text">{{ ads.text }}</p>
+            <p id="ad_description">{{ ads.ad_description }}</p>
+            <p id="ad_date">{{ ads.correct_data }}</p>
+        </div>
+    </div>
+    <div class="btnGroup">
+        <form method="post">
+            {% csrf_token %}
+            {% if ads.is_confirm %}
+                <button type="submit" class="btn btn-danger" name="btnconfirm" value="delete">Удалить</button>
+            {% else %}
+                <button type="submit" class="btn btn-success" name="btnconfirm" value="confirm">Подтвердить</button>
+                <button type="submit" class="btn btn-danger" name="btnconfirm" value="delete">Удалить</button>
+            {% endif %}
+
+        </form>
+    </div>
+{% endblock content %}

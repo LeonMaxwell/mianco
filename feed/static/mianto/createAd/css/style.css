@@ -1,0 +1,45 @@
+form{
+    padding-bottom: 3%;
+    padding-left: 30%;
+    width: 99%;
+}
+
+
+.closeSet img{
+    width: 3%;
+    padding-top: 1%;
+    margin-left: 76%;
+}
+
+.asteriskField{
+    display: none;
+}
+
+
+.ui-autocomplete {
+    margin:0;
+    padding:0;
+    list-style-type:none;
+    border: solid 1px #ccc;
+    background-color: #fff;
+    width: 500px;
+}
+
+.ui-autocomplete li {
+    font-family: Arial, Verdana, Sans-Serif, serif;
+    margin: 1px;
+    cursor: pointer;
+    display: block;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.428571429;
+}
+
+.ui-menu-item:hover{ background-color: #66afe9; }
+
+.ui-helper-hidden-accessible { display:none; }
+
+.invalid-feedback{
+    display: block;
+}
