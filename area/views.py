@@ -51,10 +51,9 @@ def parsing_city(request):
 
 class CityView(APIView):
     # Класс View при котором можно посмотреть сформированный JSON из базы данных городов
-    renderer_classes = [JSONRenderer]
 
     @staticmethod
-    def get(self, request, format=None):
+    def get(request, format=None):
         city_all = City.objects.all().values()
         content = city_all
         return Response(content)

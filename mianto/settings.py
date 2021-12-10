@@ -52,9 +52,12 @@ INSTALLED_APPS = [
     'captcha',
     'crispy_forms',
     'rest_framework',
+    'rest_framework.authtoken',
+    'django_filters',
     'bootstrap4',
     'bootstrap_datepicker_plus',
     'channels',
+    'drf_yasg2'
 ]
 
 MIDDLEWARE = [
@@ -179,3 +182,8 @@ EMAIL_HOST_USER = 'leo.urabaros@gmail.com'
 EMAIL_HOST_PASSWORD = 'Lion2011'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+}

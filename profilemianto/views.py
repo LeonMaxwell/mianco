@@ -1,11 +1,131 @@
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponseRedirect, HttpResponse
+from django.contrib.auth.models import update_last_login
+from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.shortcuts import render
+from rest_framework import status, generics, permissions
+from rest_framework.authtoken.models import Token
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
 from .forms import LoginProfileForm, RegisterProfileForm, UpdateProfileForm
-# Create your views here.
+from .serializers import LoginProfileSerializer, RegisterProfileSerializer, ProfileSerializer, UpdateProfileSerializer, \
+    ProfileAdSerializer, ProfileMessagesSerializer
 from django.views.generic import FormView, UpdateView
 from .models import ProfileMianto, ProfileFeed, ProfileMessages
 from django.forms.models import model_to_dict
+
+
+# API
+
+class LoginAPIView(APIView):
+    """ Авторизация пользователя в системе. """
+    queryset = ProfileMianto
+    serializer_class = LoginProfileSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = LoginProfileSerializer(data=request.data, context={'request': request})
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data['login']
+        login(request, user)
+        token, created = Token.objects.get_or_create(user=user)
+        return Response({"status": status.HTTP_200_OK, "Token": token.key})
+
+
+class LogoutAPIView(APIView):
+    """ Выход пользователя из системы """
+    def get(self, request, format=None):
+        logout(request)
+        return Response(status=status.HTTP_200_OK)
+
+
+class RegisterProfileAPIVIew(generics.CreateAPIView):
+    """ Регистрация пользователя """
+    queryset = ProfileMianto
+    serializer_class = RegisterProfileSerializer
+
+
+class ProfileAPIDetail(APIView):
+    """  Вывод детальной информации о пользователе по личному ключу. С возможностью обновления и удаления профиля. """
+    serializer_class = UpdateProfileSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    @staticmethod
+    def get_object(pk):
+        try:
+            return ProfileMianto.objects.get(pk=pk)
+        except ProfileMianto.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, *args, **kwargs):
+        if request.user.pk == pk:
+            profile = self.get_object(pk=pk)
+            serializer = ProfileSerializer(profile)
+            return Response(serializer.data)
+        else:
+            return Response("Войдите в свой профиль")
+
+    def put(self, request, pk, *args, **kwargs):
+        if request.user.pk == pk:
+            profile = self.get_object(pk=pk)
+            serializer = UpdateProfileSerializer(profile, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response("Войдите в свой профиль")
+
+    def delete(self, request, pk, *args, **kwargs):
+        if request.user == pk:
+            profile = self.get_object(pk=pk)
+            profile.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        else:
+            return Response("Войдите в свой профиль")
+
+
+class ProfileFeedAPIView(APIView):
+    """ Вывод информации о объявлениях которые принадлежать профилю пользователя. """
+    serializer_class = ProfileAdSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    @staticmethod
+    def get_object(pk):
+        try:
+            profile = ProfileMianto.objects.get(pk=pk)
+            return ProfileFeed.objects.filter(profile=profile)
+        except ProfileFeed.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, *args, **kwargs):
+        if request.user.pk == pk:
+            profile = self.get_object(pk=pk)
+            serializer = ProfileAdSerializer(profile, many=True)
+            return Response(serializer.data)
+        else:
+            return Response("Войдите в свой профиль")
+
+
+class ProfileMessagesAPIView(APIView):
+    """ Вывод информации о каналах которые принадлежать профилю пользователя. """
+    serializer_class = ProfileMessagesSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    @staticmethod
+    def get_object(pk):
+        try:
+            profile = ProfileMianto.objects.get(pk=pk)
+            return ProfileMessages.objects.filter(first_interlocutor=profile)
+        except ProfileMessages.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, *args, **kwargs):
+        if request.user.pk == pk:
+            profile = self.get_object(pk=pk)
+            serializer = ProfileMessagesSerializer(profile, many=True)
+            return Response(serializer.data)
+        else:
+            return Response("Войдите в свой профиль")
 
 
 class LoginProfileView(FormView):

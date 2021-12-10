@@ -1,8 +1,15 @@
+from random import choices
+
 from django.core.mail import send_mail
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, Http404
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import FormView
-
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import generics, status
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from django_filters import rest_framework as filters
 from profilemianto.models import ProfileFeed, ProfileMianto, ProfileMessages
 from .forms import ContactForm, SettingsForm, CreateAdForm, AnswerForm
 from area.models import City, Country
@@ -11,8 +18,82 @@ import locale
 from django.db.models import Q
 from datetime import date
 
+from .serializers import AnnouncementSerializer, AnswerSerializer
+
 # При данной настройке месяц выдается на русском языке.
 locale.setlocale(locale.LC_ALL, 'ru_RU.UTF-8')
+
+
+def get_choice():
+    # функция выборки от 18 до 80
+    return ((x, x) for x in range(18, 81))
+
+
+class EmployeeFilter(filters.FilterSet):
+    """ Класс который подключает личную фильтрацию для фильтрации возрастов. """
+    from_age = filters.ChoiceFilter(method='filter_queryset', label="Возраст от", choices=get_choice)
+    to_age = filters.ChoiceFilter(method='filter_queryset', label="до", choices=get_choice)
+
+    class Meta:
+        model = Announcement
+        fields = ['gender', 'interlocutor', 'purpose_of_acquaintance', 'city']
+
+    def filter_queryset(self, queryset):
+        queryset = Announcement.objects.all()
+        user_id = self.request.user.pk
+        from_age = self.request.query_params.get('from_age')
+        to_age = self.request.query_params.get('to_age')
+        if from_age and to_age:
+            queryset = queryset.filter(
+                dob__range=(date.today().replace(year=date.today().year - int(to_age)),
+                            date.today().replace(year=date.today().year - int(from_age))))
+        return queryset
+
+
+class AnnouncementListView(generics.ListAPIView):
+    """
+        Класс для генерации списка из всех объявлений. С фильтрацией по полу, предпочтениям, целям, городам и возрасту
+    """
+    queryset = Announcement.objects.all()
+    serializer_class = AnnouncementSerializer
+    filter_backends = [DjangoFilterBackend]
+    filter_class = EmployeeFilter
+    ordering = ['-created_at']
+
+
+class AnnouncementDetail(APIView):
+    """ Класс предоставляет более подробную информацию об объявлении, так же с возможностью его удалить и ответить.
+     Доступно только авторизированным пользователям."""
+    serializer_class = AnswerSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly, ]
+
+    @staticmethod
+    def get_object(pk):
+        try:
+            return Announcement.objects.get(pk=pk)
+        except Announcement.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, *args, **kwargs):
+        announcement = self.get_object(pk=pk)
+        serializer = AnnouncementSerializer(announcement)
+        return Response(serializer.data)
+
+    def post(self, request, pk, *args, **kwargs):
+        an_email = Announcement.objects.get(pk=self.kwargs['pk']).email
+        an_text = Announcement.objects.get(pk=self.kwargs['pk']).text
+
+        send_mail('Mianto Love',
+                  f"На ваше сообщение '{an_text}' ответили '{request.data['answer']}', вы и дальше можете "
+                  f"общаться, вот email пользователя который вам ответил {request.data['email']}",
+                  f"leo.urabaros@gmail.com", [f'{an_email}'], fail_silently=False)
+
+        return Response({'email': request.data['email'], 'text': request.data['answer']})
+
+    def delete(self, request, pk, *args, **kwargs):
+        announcement = self.get_object(pk=pk)
+        announcement.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class ConfirmView(FormView):
@@ -168,7 +249,7 @@ def create_chat(request, pk):
     profile = ProfileFeed.objects.get(ad=an_companion).profile
     second_companion = ProfileMianto.objects.get(pk=request.user.pk)
     if not ProfileMessages.objects.filter(first_interlocutor=profile, second_interlocutor=second_companion) or not \
-            ProfileMessages.objects.filter(first_interlocutor = second_companion, second_interlocutor=profile):
+            ProfileMessages.objects.filter(first_interlocutor=second_companion, second_interlocutor=profile):
         messages_to = ProfileMessages()
         messages_to.first_interlocutor = profile
         messages_to.second_interlocutor = second_companion

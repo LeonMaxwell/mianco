@@ -79,8 +79,8 @@ class ProfileMianto(AbstractBaseUser):
 
 class ProfileFeed(models.Model):
     """ Модель для создания хранилища объявлений к пользователю """
-    profile = models.ForeignKey(ProfileMianto, on_delete=models.CASCADE, verbose_name=_("Профиль"))
-    ad = models.ForeignKey(Announcement, on_delete=models.CASCADE, verbose_name=_("Объявление"))
+    profile = models.ForeignKey(ProfileMianto, related_name="profiles", on_delete=models.CASCADE, verbose_name=_("Профиль"))
+    ad = models.ForeignKey(Announcement, related_name='ads', on_delete=models.CASCADE, verbose_name=_("Объявление"))
 
     class Meta:
         verbose_name = "Стена профиля"
