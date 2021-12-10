@@ -1,0 +1,32 @@
+{% extends 'feed/index.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'profile/feed/css/style.css' %}">
+{% endblock style %}
+
+
+{% block content %}
+    {% include 'feed/parts/navigations.html' %}
+
+    {% include 'feed/parts/navigationProfile.html' %}
+    <ul class="liplok">
+        {% for foo in profile_ad %}
+            {% if foo.ad.is_prime %}
+                <li class="premium">
+            {% else %}
+                <li>
+            {% endif %}
+                <a href="{% url 'checkadview' pk=foo.ad.pk uuid_ad=foo.ad.uuid_ad %}">
+                    {% if foo.ad.is_prime %}
+                        <img id="ad_crown" src="{% static 'mianto/feed/img/crown.svg' %}" alt="prem">
+                    {% endif %}
+                    <p id="part_data">{{ foo.ad.correct_data }}</p>
+                    <p id="part_text">{{ foo.ad.text }}</p>
+                    <p id="part_description">{{ foo.ad.ad_description }}</p>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

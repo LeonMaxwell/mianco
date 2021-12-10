@@ -3,25 +3,27 @@
 
 {% block style %}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'profile/login/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'profile/settings/css/style.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
 {% endblock style %}
-{% load crispy_forms_tags %}
 
+{% load crispy_forms_tags %}
 
 {% block content %}
     {% include 'feed/parts/navigations.html' %}
+
+    {% include 'feed/parts/navigationProfile.html' %}
+
     <form method="post">
         {% csrf_token %}
         {% crispy form %}
-        <a href="{% url 'profileregister' %}" class="btn btn-primary custom-btn link-reg">Регистрация</a>
     </form>
 {% endblock content %}
 
 {% block script %}
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-        crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
         integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 {% endblock script %}

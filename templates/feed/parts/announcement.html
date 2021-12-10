@@ -17,6 +17,11 @@
             <p id="ad_text">{{ model.text }}</p>
             <p id="ad_description">{{ model.ad_description }}</p>
             <p id="ad_date">{{ model.correct_data }}</p>
+            {% if check %}
+                <a href="{% url 'miantocreatechat' pk=model.pk %}">
+                    <img src="{% static 'mianto/announcement/img/chats.svg' %}" id='iconChats' alt="chats">
+                </a>
+            {% endif %}
         </div>
         <p id="label_answ">Напишите ответ на это объявление</p>
         <form method="post">

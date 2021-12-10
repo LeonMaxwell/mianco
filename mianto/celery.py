@@ -16,7 +16,7 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 
 # Настройка выполнения задач
 app.conf.beat_schedule = {
-    'myFirstTask':{
+    'myFirstTask': {
         'task': 'feed.tasks.clearing_old_ad',
         'schedule': crontab(hour=21, minute=00),
     }
@@ -24,4 +24,3 @@ app.conf.beat_schedule = {
 
 # Загрузка модулей задач из всех зарагестрированных приложений
 app.autodiscover_tasks()
-

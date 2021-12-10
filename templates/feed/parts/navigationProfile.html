@@ -1,0 +1,18 @@
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'profile/nav/css/style.css' %}">
+{% endblock style %}
+
+<div class="block_profile">
+    <p id="title_profile"><b>{{ prof.login }}</b></p>
+    {% if prof.avatar %}
+        <img src="{{ prof.avatar.url }}" alt="avatar">
+    {% endif %}
+    <ul class="navMenu">
+        <li><a href="{% url 'profilefeed' pk=prof.pk %}">Стена объявлений</a></li>
+        <li><a href="{% url 'profilemessages' pk=prof.pk %}">Сообщения</a></li>
+        <li><a href="{% url 'profilesettings' pk=prof.pk %}">Настройки</a></li>
+        <li><a href="{% url 'profilelogout' pk=prof.pk %}">Выход</a></li>
+    </ul>
+</div>

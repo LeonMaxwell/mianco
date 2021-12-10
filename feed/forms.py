@@ -1,17 +1,14 @@
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Row, Column, Submit
 from django import forms
-from django.urls import reverse_lazy
 from bootstrap_datepicker_plus import DatePickerInput
-from area.models import City
-from dal import autocomplete
 from captcha.fields import ReCaptchaField
 from captcha.widgets import ReCaptchaV2Checkbox
 from .models import Announcement
 
 
 class ContactForm(forms.Form):
-    """ Класс форм выводящий каптчу """
+    """ Класс форм выводящий капчу """
     captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox, label="")
 
 

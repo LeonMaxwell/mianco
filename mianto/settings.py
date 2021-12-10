@@ -53,7 +53,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'rest_framework',
     'bootstrap4',
-    'bootstrap_datepicker_plus'
+    'bootstrap_datepicker_plus',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -87,6 +88,20 @@ TEMPLATES = [
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 WSGI_APPLICATION = 'mianto.wsgi.application'
+
+# Настройки асинхронного сервера.
+ASGI_APPLICATION = "mianto.asgi.application"
+
+# Перед началом надо запустить Redis на сервере иначе работать не будет.
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
+
 SECURE_BROWSER_XSS_FILTER = True
 
 # Database

@@ -1,6 +1,5 @@
 import uuid
 
-from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.utils.deconstruct import deconstructible
@@ -103,6 +102,7 @@ class Announcement(models.Model):
                       f"leo.urabaros@gmail.com", [f'{self.email}'], fail_silently=False)
 
     def correct_data(self):
+        # Функция которая получает правильную форматируемую дату.
         now = timezone.now()
         cur_date = self.created_at
         if str(cur_date) == f"{now.year}-{now.month}-{now.fold}{now.day}":

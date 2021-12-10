@@ -1,5 +1,4 @@
 from django.http import HttpResponse
-from django.shortcuts import render
 import requests
 from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
@@ -9,6 +8,7 @@ from .models import City, Country
 
 
 def parse_areas():
+    # Парсинг городов по JSON. По окончанию паркинга создаются объекты в базе данных.
     country_all = Country.objects.all()
     city_all = City.objects.all()
     r_json = requests.get('https://api.hh.ru/areas').json()
@@ -44,13 +44,16 @@ def parse_areas():
 
 
 def parsing_city(request):
+    # функция которая запускает парсинг городов
     result = parse_areas()
     return HttpResponse(result)
 
 
 class CityView(APIView):
+    # Класс View при котором можно посмотреть сформированный JSON из базы данных городов
     renderer_classes = [JSONRenderer]
 
+    @staticmethod
     def get(self, request, format=None):
         city_all = City.objects.all().values()
         content = city_all

@@ -1,0 +1,27 @@
+{% extends 'feed/index.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'profile/chat/css/style.css' %}">
+{% endblock style %}
+
+
+{% block content %}
+    {% include 'feed/parts/navigations.html' %}
+
+    {% include 'feed/parts/navigationProfile.html' %}
+
+    <ul class="liplok">
+        {% for foo in channel %}
+            <li>
+                <a href="{% url 'profileroom' pk=prof.pk id_messages=foo.uuid_channel %}">
+                    <p id="part_data">{{ foo.created_at }}</p>
+                    <p id="part_text">Чат №{{ foo.pk }}</p>
+                    <p id="part_description">Собеседник: {{ foo.second_interlocutor.login }}</p>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock content %}

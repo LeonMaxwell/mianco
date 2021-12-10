@@ -1,7 +1,12 @@
 {% extends 'feed/index.html' %}
 {% load static %}
-{% block content %}
 
+{% block style %}
+    <link rel="stylesheet" href="{% static 'mianto/feed/css/style.css' %}">
+{% endblock style%}
+
+
+{% block content %}
 {% include 'feed/parts/navigations.html' %}
 
 <div class="ribbon">

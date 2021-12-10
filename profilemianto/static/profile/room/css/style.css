@@ -1,0 +1,95 @@
+.log-area{
+    height: 95vh;
+    margin-bottom: 2%;
+    padding: 5% 20%;
+    overflow-y: auto;
+    -ms-overflow-style: none;  /* IE 10+ */
+    scrollbar-width: none; /* Firefox */
+    display: flex;
+    flex-direction: column;
+    margin-left: -5%;
+}
+
+.log-block{
+    width: 70%;
+    padding-bottom: 2%;
+    color: #fff;
+    font-family: Ubuntu, serif;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.request-log{
+    background-color: #6675d6;
+    border-radius: 10px;
+    width: 20%;
+    height: 5vw;
+    margin-left: 75%;
+    margin-top: 3%;
+}
+
+.request-log .log-text{
+    padding-top: 10%;
+    padding-left: 10%;
+}
+
+.request-log .log-date{
+    padding-right: 5%;
+    margin-top: -3%;
+    text-align: right;
+}
+
+.log-date{
+    font-style: italic;
+    color: #d3d3d3;
+    font-size: 1vw;
+    font-family: Ubuntu, serif;
+}
+
+.log-text{
+    font-weight: bold;
+    color: white;
+    font-family: Ubuntu, serif;
+    font-size: 1.2vw;
+}
+
+.response-log{
+    background-color: #e65555;
+    border-radius: 10px;
+    width: 20%;
+    height: 5vw;
+    margin-top: 3%;
+    margin-left: 10%;
+}
+
+.response-log .log-text{
+    padding-right: 5%;
+    text-align: right;
+    padding-top: 10%;
+}
+
+.response-log .log-date{
+    padding-left: 10%;
+    text-align: left;
+}
+
+::-webkit-scrollbar { /* chrome based */
+    width: 0;  /* ширина scrollbar'a */
+    background: transparent;  /* опционально */
+}
+
+#chat-message-input{
+    margin-top: 5%;
+    margin-left: 15%;
+    width: 70%;
+}
+
+#chat-message-submit{
+    margin-top: -7%;
+    margin-left: 86%;
+}
+
+
+
+
+

@@ -1,7 +1,9 @@
 from django.core.mail import send_mail
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import FormView
+
+from profilemianto.models import ProfileFeed, ProfileMianto, ProfileMessages
 from .forms import ContactForm, SettingsForm, CreateAdForm, AnswerForm
 from area.models import City, Country
 from .models import Announcement
@@ -152,7 +154,31 @@ class CreateAdView(FormView):
             ad.interlocutor = form.data['interlocutor']
             ad.city = form.data['city']
             ad.save()
+            if self.request.user.is_authenticated:
+                profile_feed = ProfileFeed()
+                profile_feed.profile = self.request.user
+                profile_feed.ad = ad
+                profile_feed.save()
             return HttpResponseRedirect("/")
+
+
+def create_chat(request, pk):
+    # Функция view для создания чата между пользователями. Повторное создания чата между пользователями невозможна.
+    an_companion = Announcement.objects.get(pk=pk)
+    profile = ProfileFeed.objects.get(ad=an_companion).profile
+    second_companion = ProfileMianto.objects.get(pk=request.user.pk)
+    if not ProfileMessages.objects.filter(first_interlocutor=profile, second_interlocutor=second_companion) or not \
+            ProfileMessages.objects.filter(first_interlocutor = second_companion, second_interlocutor=profile):
+        messages_to = ProfileMessages()
+        messages_to.first_interlocutor = profile
+        messages_to.second_interlocutor = second_companion
+        messages_to.save()
+        messages_from = ProfileMessages()
+        messages_from.first_interlocutor = second_companion
+        messages_from.second_interlocutor = profile
+        messages_from.uuid_channel = messages_to.uuid_channel
+        messages_from.save()
+    return HttpResponseRedirect(f"/profile/{request.user.pk}/feed/messages/")
 
 
 def checkAdView(request, pk, uuid_ad=None):
@@ -194,12 +220,18 @@ def filterAdView(request, gander, interlocutor, from_age, to_age, id_purpose, co
     except KeyError:
         if 'premium' in formation_of_ad_repository(gander, interlocutor, from_age,
                                                    to_age, id_purpose, code_country, code_city):
-            return render(request, 'feed/parts/feed.html', {'premium': formation_of_ad_repository(gander, interlocutor,
-                                                                                                  from_age, to_age,
-                                                                                                  id_purpose,
-                                                                                                  code_country,
-                                                                                                  code_city)[
-                'premium']})
+            context = {
+                'premium': formation_of_ad_repository(
+                    gander,
+                    interlocutor,
+                    from_age,
+                    to_age,
+                    id_purpose,
+                    code_country,
+                    code_city
+                )['premium']
+            }
+            return render(request, 'feed/parts/feed.html', context)
         elif 'data' in formation_of_ad_repository(gander, interlocutor, from_age,
                                                   to_age, id_purpose, code_country, code_city):
             return render(request, 'feed/parts/feed.html',
@@ -218,8 +250,16 @@ class AdView(FormView):
     template_name = 'feed/parts/announcement.html'
 
     def get(self, request, *args, **kwargs):
+        checks = False
         an = Announcement.objects.get(pk=self.kwargs['pk'])
-        return render(request, self.template_name, {'model': an, 'form': self.form_class})
+        try:
+            profile = ProfileFeed.objects.get(ad=an)
+            if request.user.is_authenticated:
+                if profile.profile.pk != request.user.pk:
+                    checks = True
+        except ProfileFeed.DoesNotExist:
+            checks = False
+        return render(request, self.template_name, {'model': an, 'form': self.form_class, 'check': checks})
 
     def form_valid(self, form):
         if form.is_valid():
