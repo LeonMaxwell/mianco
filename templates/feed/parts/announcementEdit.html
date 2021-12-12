@@ -2,6 +2,7 @@
 {% load static %}
 {% block style %}
     <link rel="stylesheet" href="{% static 'mianto/announcementEdit/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'mianto/announcementEdit/css/media.css' %}">
 {% endblock %}
 
 
@@ -18,12 +19,13 @@
     <div class="btnGroup">
         <form method="post">
             {% csrf_token %}
-            {% if ads.is_confirm %}
-                <button type="submit" class="btn btn-danger" name="btnconfirm" value="delete">Удалить</button>
-            {% else %}
+            {% if not ads.is_confirm %}
                 <button type="submit" class="btn btn-success" name="btnconfirm" value="confirm">Подтвердить</button>
-                <button type="submit" class="btn btn-danger" name="btnconfirm" value="delete">Удалить</button>
+             {% endif %}
+            {% if not ads.is_prime %}
+                <button type="submit" class="btn btn-warning" name="btnconfirm" value="prime">Оформить премиум</button>
             {% endif %}
+                <button type="submit" class="btn btn-danger" name="btnconfirm" value="delete">Удалить</button>
 
         </form>
     </div>

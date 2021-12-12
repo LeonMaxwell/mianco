@@ -1,9 +1,11 @@
+@import "media.css";
+
 body{
     width: 99%;
 }
 
 form{
-    padding-left: 40%;
+    margin-left: 40%;
     padding-top: 10%;
 }
 
@@ -14,7 +16,7 @@ form label{
 }
 
 form .btn{
-    margin-left: 4%;
+    margin-left: 3%;
 }
 
 .link-reg{

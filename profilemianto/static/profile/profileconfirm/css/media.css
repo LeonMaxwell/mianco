@@ -1,0 +1,113 @@
+
+
+@media screen and (max-width: 480px) {
+    /*
+        Расшиерение для телефонов
+    */
+
+    .block_profile{
+        width: 90%;
+        margin-left: 5%;
+        margin-top: 40%;
+    }
+
+    .block_profile p{
+        margin-left: -5%;
+        font-size: 1.9vh;
+    }
+
+    #profile_email, #profile_dob, #profile_create{
+        font-size: 1.9vh;
+        padding-left: 3%;
+    }
+
+    .block_profile #title_info{
+        font-size: 2vh;
+        padding-left: 5%;
+    }
+
+    .block_profile img{
+        padding-left: 20%;
+    }
+
+    .btnGroup{
+        margin-left: 25%;
+    }
+
+    .btn{
+        font-size: 2vh;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    /*
+        Расшиерение для планшетов
+    */
+
+    .block_profile{
+        width: 90%;
+        margin-left: 5%;
+        margin-top: 20%;
+    }
+
+    #profile_email, #profile_dob, #profile_create{
+        padding-left: 5%;
+    }
+
+    .block_profile #title_info{
+        padding-left: 30%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    /*
+        Расшиерение для ноутбуки
+    */
+
+    .block_profile{
+        width: 60%;
+        margin-left: 20%;
+        margin-top: 20%;
+    }
+
+    #profile_email, #profile_dob, #profile_create{
+        padding-left: 10%;
+    }
+
+    .block_profile #title_info{
+        padding-left: 20%;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    /*
+        Расшиерение для больших экранов
+    */
+}
+
+@media screen and (min-width: 1367px) {
+    /*
+        Расшиерение для телевизрово
+    */
+
+    .block_profile{
+        width: 40%;
+        margin-left: 30%;
+        margin-top: 20%;
+    }
+
+    #profile_email, #profile_dob, #profile_create{
+        padding-left: 10%;
+    }
+    .block_profile p{
+        font-size: 1.3vw;
+    }
+    .block_profile #title_info{
+        padding-left: 20%;
+        font-size: 1.3vw;
+    }
+
+    .btn{
+        font-size: 1.5vw;
+    }
+}

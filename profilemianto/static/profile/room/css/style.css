@@ -1,3 +1,6 @@
+@import "media.css";
+
+
 .log-area{
     height: 95vh;
     margin-bottom: 2%;
@@ -16,21 +19,22 @@
     color: #fff;
     font-family: Ubuntu, serif;
     font-weight: bold;
-    font-size: 0.9em;
 }
 
 .request-log{
     background-color: #6675d6;
     border-radius: 10px;
-    width: 20%;
-    height: 5vw;
     margin-left: 75%;
     margin-top: 3%;
+    padding-right: 0;
+    display: block;
 }
 
 .request-log .log-text{
     padding-top: 10%;
-    padding-left: 10%;
+    padding-left: 5%;
+    word-wrap: break-word;
+
 }
 
 .request-log .log-date{
@@ -44,33 +48,38 @@
     color: #d3d3d3;
     font-size: 1vw;
     font-family: Ubuntu, serif;
+    padding-top: 10%;
+    margin-bottom: -5%;
 }
 
 .log-text{
     font-weight: bold;
     color: white;
     font-family: Ubuntu, serif;
-    font-size: 1.2vw;
+    font-size: 1vw;
 }
 
 .response-log{
     background-color: #e65555;
     border-radius: 10px;
-    width: 20%;
-    height: 5vw;
+    width: 30%;
     margin-top: 3%;
     margin-left: 10%;
+    display: block;
 }
 
 .response-log .log-text{
-    padding-right: 5%;
     text-align: right;
+    word-wrap: break-word;
     padding-top: 10%;
+    padding-left: 5%;
+    padding-right: 5%;
 }
 
 .response-log .log-date{
-    padding-left: 10%;
+    padding-left: 0;
     text-align: left;
+
 }
 
 ::-webkit-scrollbar { /* chrome based */
@@ -88,7 +97,6 @@
     margin-top: -7%;
     margin-left: 86%;
 }
-
 
 
 

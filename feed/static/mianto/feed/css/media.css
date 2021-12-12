@@ -1,0 +1,77 @@
+@media screen and (max-width: 480px) {
+    /*
+        Расшиерение для телефонов
+    */
+
+    .ribbon{
+        padding-top: 10%;
+        padding-left: 0;
+        margin-left: -5%;
+    }
+
+    .ribbon ul #titleDate{
+        font-size: 1.5vh;
+        padding-left: 35%;
+    }
+
+    .ribbon ul li a{
+        width: 97%;
+    }
+
+    .ribbon ul li a #ad_crown{
+        width: 7%;
+    }
+
+    .ribbon ul li a #part_data{
+        font-size: 1vh;
+    }
+
+    .ribbon ul li a #part_text{
+        font-size: 1.5vh;
+    }
+
+    .ribbon ul li a #part_description{
+        font-size: 1vh;
+
+    }
+}
+
+@media screen and (max-width: 768px) {
+    /*
+        Расшиерение для планшетов
+    */
+    .ribbon ul li a #part_text{
+        max-height: calc(20px * 2);
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    /*
+        Расшиерение для ноутбуки
+    */
+}
+
+@media screen and (max-width: 1200px) {
+    /*
+        Расшиерение для больших экранов
+    */
+}
+
+@media screen and (min-width: 1367px) {
+    /*
+        Расшиерение для телевизрово
+    */
+
+    .ribbon ul #titleDate{
+        font-size: 2vw;
+        padding-left: 25%;
+    }
+
+    .ribbon ul li{
+        padding-top: 5%;
+    }
+
+    .ribbon ul li a #part_text{
+        max-height: calc(80px * 2);
+    }
+}

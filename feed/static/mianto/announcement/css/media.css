@@ -1,0 +1,110 @@
+
+
+@media screen and (max-width: 480px) {
+    /*
+        Расшиерение для телефонов
+    */
+
+    .block_ad{
+        padding-top: 10%;
+    }
+
+    .block_ad #come_back{
+        font-size: 1.5vh;
+    }
+
+    .block_ad #title_ad{
+        font-size: 2vh;
+    }
+
+    .block_ad .block_content{
+        width: 97%;
+        padding-bottom: 0;
+    }
+
+    .block_ad .block_content #ad_description, .block_ad .block_content #ad_date{
+        font-size: 1vh;
+    }
+
+    .block_ad #label_answ{
+        font-size: 1.5vh;
+        padding-left: 30%;
+    }
+
+    .block_ad form{
+        padding-left: 2%;
+        padding-right: 2%;
+    }
+
+
+    #iconChats{
+        width: 5%;
+        margin-left: 95%;
+        margin-top: -3%;
+    }
+
+
+}
+
+@media screen and (max-width: 768px) {
+    /*
+        Расшиерение для планшетов
+    */
+
+    .block_ad #come_back{
+        font-size: 1.5vw;
+    }
+
+    .block_ad .block_content{
+        margin-top: -3%;
+    }
+
+    .block_ad .block_content #ad_description, .block_ad .block_content #ad_date{
+        font-size: 1.5vw;
+    }
+
+    .block_ad #label_answ{
+        font-size: 1.8vw;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    /*
+        Расшиерение для ноутбуки
+    */
+}
+
+@media screen and (max-width: 1200px) {
+    /*
+        Расшиерение для больших экранов
+    */
+}
+
+@media screen and (min-width: 1367px) {
+    /*
+        Расшиерение для телевизрово
+    */
+
+    #ad_text{
+        font-size: 2vw;
+    }
+
+    .block_ad .block_content #ad_description, .block_ad .block_content #ad_date{
+        font-size: 1.5vw;
+    }
+    .block_ad #label_answ{
+        font-size: 1.8vw;
+    }
+
+    .block_ad form{
+        font-size: 1.5vw;
+    }
+
+    .block_ad form input{
+        font-size: 2vw;
+    }
+
+    .block_ad #come_back{
+        font-size: 1.5vw;
+    }
+}

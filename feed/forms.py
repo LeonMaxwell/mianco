@@ -1,5 +1,5 @@
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Row, Column, Submit
+from crispy_forms.layout import Layout, Row, Column, Submit, HTML
 from django import forms
 from bootstrap_datepicker_plus import DatePickerInput
 from captcha.fields import ReCaptchaField
@@ -66,7 +66,7 @@ class CreateAdForm(forms.ModelForm):
             Row(Column('interlocutor', css_class='form-group col-md-8 mb-0'), css_class='form-row'),
             Row(Column('purpose_of_acquaintance', css_class='form-group col-md-8 mb-0'), css_class='form-row'),
             Row(Column('city', css_class='form-group col-md-8 mb-0'), css_class='form-row'),
-            Submit('submit', 'Создать объявление')
+            Submit('submit', 'Создать объявление'),
         )
 
 

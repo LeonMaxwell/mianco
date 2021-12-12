@@ -1,3 +1,5 @@
+@import "media.css";
+
 .btnGroup{
     margin-top: 3%;
     margin-left: 44%;
@@ -18,6 +20,7 @@
 }
 
 .block_profile img{
+    width: 20%;
     padding-left: 35%;
     padding-bottom: 10%;
 }

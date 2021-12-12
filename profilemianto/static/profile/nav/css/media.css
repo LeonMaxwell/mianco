@@ -1,0 +1,59 @@
+
+
+@media screen and (max-width: 480px) {
+    /*
+        Расшиерение для телефонов
+    */
+
+    .block_profile{
+        margin-top: 10%;
+        width: 90%;
+        margin-left: 5%;
+    }
+
+    .block_profile #title_profile{
+        padding-left: 44%;
+    }
+
+    .block_profile img{
+        width: 20%;
+        padding-left: 0;
+        margin-left: 40%;
+        margin-top: -5%;
+        margin-bottom: -10%;
+    }
+
+    .navMenu li a{
+        font-size: 1.2vh;
+        margin-right: 2%;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    /*
+        Расшиерение для планшетов
+    */
+}
+
+@media screen and (max-width: 1024px) {
+    /*
+        Расшиерение для ноутбуки
+    */
+}
+
+@media screen and (max-width: 1200px) {
+    /*
+        Расшиерение для больших экранов
+    */
+}
+
+@media screen and (min-width: 1367px) {
+    /*
+        Расшиерение для телевизрово
+    */
+
+    .block_profile #title_profile{
+        font-size: 1.5vw;
+    }
+}

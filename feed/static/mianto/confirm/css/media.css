@@ -1,0 +1,91 @@
+@media screen and (max-width: 480px) {
+    /*
+        Расшиерение для телефонов
+    */
+
+    #logos {
+        width: 30%;
+        margin-left: 35%;
+    }
+
+    h1, p{
+        font-size: 1.5vh;
+    }
+
+    .formCheck{
+        margin-left: 13%;
+    }
+
+    .btn-primary.custom-btn{
+        margin-left: -5%;
+        margin-right: 10%;
+        font-size: 1.5vh;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    /*
+        Расшиерение для планшетов
+    */
+
+    #logos {
+        width: 20%;
+        margin-left: 40%;
+        margin-top: 30%;
+    }
+
+    h1, p{
+        font-size: 1.7vw;
+    }
+
+    .formCheck{
+        margin-left: 30%;
+    }
+}
+
+
+@media screen and (max-width: 1024px) {
+    /*
+        Расшиерение для ноутбуки
+    */
+
+    #logos {
+        width: 15%;
+        margin-left: 43%;
+        margin-top: 10%;
+    }
+
+}
+
+@media screen and (max-width: 1200px) {
+    /*
+        Расшиерение для больших экранов
+    */
+
+}
+
+@media screen and (min-width: 1367px) {
+    /*
+        Расшиерение для телевизрово
+    */
+
+    #logos {
+        width: 17%;
+        margin-left: 40%;
+        margin-top: 10%;
+    }
+
+    h1, p{
+        font-size: 2vw;
+    }
+
+    .formCheck{
+        margin-left: 35%;
+    }
+
+    .btn-primary.custom-btn{
+        font-size: 2vw;
+    }
+
+}

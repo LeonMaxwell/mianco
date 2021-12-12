@@ -1,0 +1,45 @@
+@media screen and (max-width: 480px) {
+    /*
+        Расшиерение для телефонов
+    */
+
+    body{
+        width: 100%;
+    }
+
+    form{
+        margin-left: 10%;
+        margin-right: 10%;
+        padding-top: 40%;
+    }
+
+    form .btn{
+        margin-left: 13%;
+    }
+
+
+}
+
+@media screen and (max-width: 768px) {
+    /*
+        Расшиерение для планшетов
+    */
+}
+
+@media screen and (max-width: 1024px) {
+    /*
+        Расшиерение для ноутбуки
+    */
+}
+
+@media screen and (max-width: 1200px) {
+    /*
+        Расшиерение для больших экранов
+    */
+}
+
+@media screen and (min-width: 1367px) {
+    /*
+        Расшиерение для телевизрово
+    */
+}

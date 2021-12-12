@@ -1,0 +1,43 @@
+@media screen and (max-width: 480px) {
+    /*
+        Расшиерение для телефонов
+    */
+
+    .logos img{
+        width: 17%;
+    }
+
+    .navDo{
+        margin-top: -12%;
+        margin-left: 20%;
+    }
+
+    .navDo a{
+        font-size: 1.4vh;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    /*
+        Расшиерение для планшетов
+    */
+}
+
+@media screen and (max-width: 1024px) {
+    /*
+        Расшиерение для ноутбуки
+    */
+}
+
+@media screen and (max-width: 1200px) {
+    /*
+        Расшиерение для больших экранов
+    */
+}
+
+@media screen and (min-width: 1367px) {
+    /*
+        Расшиерение для телевизрово
+    */
+}

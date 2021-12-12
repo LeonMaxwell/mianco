@@ -1,5 +1,7 @@
 import os
 import uuid
+
+from PIL import Image
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.core.mail import send_mail
 from django.db import models
@@ -69,6 +71,15 @@ class ProfileMianto(AbstractBaseUser):
     def save(self, *args, **kwargs):
         # при сохранения пользователя происходит отправка сообщения на почту для подтверждения профиля
         super().save(*args, **kwargs)
+
+        if self.avatar:
+            img = Image.open(self.avatar.path)
+
+            if img.height > 300 or img.width > 300:
+                new_img = (200, 200)
+                img.thumbnail(new_img)
+                img.save(self.avatar.path)
+
         if not self.is_confirm:
             send_mail("Mianto Love",
                       "Ваши данные успешно отправлены для регистрации. Для того что бы завершить регистрацию"

@@ -1,0 +1,60 @@
+
+
+@media screen and (max-width: 480px) {
+    /*
+        Расшиерение для телефонов
+    */
+
+    .liplok{
+        padding-left: 5%;
+    }
+
+    .liplok li a{
+        width: 95%;
+    }
+
+    .liplok li a #ad_crown{
+        width: 7%;
+    }
+
+    .liplok li a #part_data{
+        font-size: 1vh;
+    }
+
+    .liplok li a #part_text{
+        font-size: 1.5vh;
+    }
+
+    .liplok li a #part_description{
+        font-size: 1vh;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    /*
+        Расшиерение для планшетов
+    */
+}
+
+@media screen and (max-width: 1024px) {
+    /*
+        Расшиерение для ноутбуки
+    */
+}
+
+@media screen and (max-width: 1200px) {
+    /*
+        Расшиерение для больших экранов
+    */
+}
+
+@media screen and (min-width: 1367px) {
+    /*
+        Расшиерение для телевизрово
+    */
+
+    .liplok li a #part_text{
+        max-height: calc(60px * 2);
+    }
+}

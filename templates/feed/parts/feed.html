@@ -3,6 +3,7 @@
 
 {% block style %}
     <link rel="stylesheet" href="{% static 'mianto/feed/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'mianto/feed/css/media.css' %}">
 {% endblock style%}
 
 
@@ -26,7 +27,7 @@
 
     {% for datum, ads in data.items %}
         <ul>
-            <p>{{ datum }}</p>
+            <p id="titleDate">{{ datum }}</p>
             {% for ad in ads %}
                 <li>
                     <a href="{% url 'miantoviewid' pk=ad.pk %}">

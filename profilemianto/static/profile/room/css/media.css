@@ -1,0 +1,91 @@
+
+
+@media screen and (max-width: 480px) {
+    /*
+        Расшиерение для телефонов
+    */
+    .log-area{
+        padding-left: 10%;
+        padding-right: 0;
+    }
+
+    .log-block{
+        width: 90%;
+    }
+
+    .response-log{
+        width: 30%;
+        margin-left: 0;
+    }
+
+    .request-log{
+        width: 30%;
+        margin-left: 65%;
+    }
+
+    .log-text{
+        font-size: 1.5vh;
+    }
+
+    .response-log .log-text{
+        padding-top: 5%;
+    }
+
+    .request-log .log-text{
+        padding-top: 5%;
+    }
+
+    .log-date{
+        font-size: 1vh;
+    }
+
+    #chat-message-input{
+        margin-top: 10%;
+        margin-left: -2%;
+
+    }
+
+    #chat-message-submit{
+        margin-top: -16%;
+        margin-left: 70%;
+        font-size: 1.9vh;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    /*
+        Расшиерение для планшетов
+    */
+}
+
+@media screen and (max-width: 1024px) {
+    /*
+        Расшиерение для ноутбуки
+    */
+}
+
+@media screen and (max-width: 1200px) {
+    /*
+        Расшиерение для больших экранов
+    */
+
+}
+
+@media screen and (min-width: 1367px) {
+    /*
+        Расшиерение для телевизрово
+    */
+
+    .log-text{
+        font-size: 1.5vw;
+    }
+
+    .request-log .log-date{
+        margin-bottom: 1%;
+    }
+
+    .response-log .log-date{
+        margin-bottom: 1%;
+    }
+}

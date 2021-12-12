@@ -1,0 +1,54 @@
+@media screen and (max-width: 480px) {
+    /*
+        Расшиерение для телефонов
+    */
+
+    form{
+        padding-left: 5%;
+        padding-right: 5%;
+        padding-top: 3%;
+    }
+
+    form .btn{
+        margin-left: 22%;
+    }
+
+    .closeSet img{
+        width: 10%;
+        padding-top: 3%;
+        margin-left: 85%;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    /*
+        Расшиерение для планшетов
+    */
+}
+
+@media screen and (max-width: 1024px) {
+    /*
+        Расшиерение для ноутбуки
+    */
+}
+
+@media screen and (max-width: 1200px) {
+    /*
+        Расшиерение для больших экранов
+    */
+}
+
+@media screen and (min-width: 1367px) {
+    /*
+        Расшиерение для телевизрово
+    */
+
+    form{
+        font-size: 1.5vw;
+    }
+
+    form input{
+        font-size: 2vw;
+    }
+}

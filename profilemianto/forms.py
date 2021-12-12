@@ -1,6 +1,6 @@
 from bootstrap_datepicker_plus import DatePickerInput
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Row, Column, Submit
+from crispy_forms.layout import Layout, Row, Column, Submit, HTML
 from django import forms
 from .models import ProfileMianto
 
@@ -19,6 +19,7 @@ class LoginProfileForm(forms.Form):
             Row(Column('username', css_class='form-group col-md-4 md-0'), css_class='form-row'),
             Row(Column('password', css_class='form-group col-md-4 mb-0'), css_class='form-row'),
             Submit('submit', "Войти"),
+            HTML("<a class='btn btn-primary' href='{% url \"profileregister\" %}'>Регистрация")
         )
 
 

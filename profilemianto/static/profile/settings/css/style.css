@@ -1,3 +1,5 @@
+@import "media.css";
+
 body{
     width: 99%;
 }
@@ -6,4 +8,8 @@ form{
     margin-top: 5%;
     margin-left: 18%;
     margin-bottom: 5%;
+}
+
+.asteriskField{
+    display: none;
 }

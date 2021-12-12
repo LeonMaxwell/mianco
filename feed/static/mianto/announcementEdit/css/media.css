@@ -1,0 +1,67 @@
+
+
+@media screen and (max-width: 480px) {
+    /*
+        Расшиерение для телефонов
+    */
+
+    .block_ad{
+        padding-top: 50%;
+    }
+
+    .block_ad #title_ad{
+        font-size: 1.7vh;
+        padding-left: 0;
+        margin-left: -17%;
+    }
+
+    .block_ad .block_content{
+        width: 108%;
+        margin-left: -17%;
+    }
+
+    .block_ad .block_content #ad_text {
+        font-size: 1.5vh;
+    }
+
+    .block_ad .block_content #ad_description, .block_ad .block_content #ad_date {
+        font-size: 1vh;
+    }
+
+    .btnGroup{
+        margin-top: 5%;
+        margin-left: 5%;
+    }
+
+    .btn{
+        margin-right: 1%;
+        width: 30%;
+        font-size: 1.2vh;
+    }
+
+
+}
+
+@media screen and (max-width: 768px) {
+    /*
+        Расшиерение для планшетов
+    */
+}
+
+@media screen and (max-width: 1024px) {
+    /*
+        Расшиерение для ноутбуки
+    */
+}
+
+@media screen and (max-width: 1200px) {
+    /*
+        Расшиерение для больших экранов
+    */
+}
+
+@media screen and (min-width: 1367px) {
+    /*
+        Расшиерение для телевизрово
+    */
+}
