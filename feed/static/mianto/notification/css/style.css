@@ -1,0 +1,32 @@
+@import "media.css";
+
+#logos {
+    width: 12%;
+    margin-left: 42%;
+    margin-top: 10%;
+}
+
+h1{
+    margin-top: -2%;
+}
+
+h1, p{
+    font-family: Ubuntu, serif;
+    text-align: center;
+    font-size: 1.2vw;
+}
+
+.btn-primary.custom-btn{
+    background-color: #d13434;
+    border-color: #d13434;
+    cursor: pointer;
+    margin-left: 45%;
+    margin-right: 5%;
+}
+
+.btn-primary.custom-btn:hover{
+
+    background-color: rgb(203, 23, 23);
+    border-color: rgb(203, 23, 23);
+    cursor: pointer;
+}

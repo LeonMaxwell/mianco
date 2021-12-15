@@ -85,17 +85,7 @@ class Announcement(models.Model):
         # Функция при которой оповещает пользователя как и при создании объявлении так и при успешном прохождении
         # модерации.
         super(Announcement, self).save()
-        if self.is_confirm:
-            if self.is_checked:
-                send_mail("Mianto Love",
-                          "Ваше объявление успешно прошло модерацию и оно размещено на сайте",
-                          'leo.urabaros@gmail.com', [f'{self.email}'], fail_silently=False)
-            else:
-                send_mail("Mianto Love",
-                          "Успешно отправили на модерацию объявление. Как только оно пройдет модерацию вы получите "
-                          "оповещение на почту.",
-                          'leo.urabaros@gmail.com', [f'{self.email}'], fail_silently=False)
-        else:
+        if not self.is_confirm:
             send_mail("Mianto Love",
                       f"Здравствуйте, для создания объявления вам требуется подтвердить ваше объявление. Перейдите"
                       f"по следующей ссылке: http://127.0.0.1:8000/announce/id{self.pk}/active/{self.uuid_ad}/",
@@ -105,7 +95,8 @@ class Announcement(models.Model):
         # Функция которая получает правильную форматируемую дату.
         now = timezone.now()
         cur_date = self.created_at
-        if str(cur_date) == f"{now.year}-{now.month}-{now.fold}{now.day}":
+        now_day = f"{now.fold}{now.day}" if len(str(now.day)) == 1 else now.day
+        if str(cur_date) == f"{now.year}-{now.month}-{now_day}":
             return "Сегодня"
         else:
             return cur_date
@@ -120,11 +111,11 @@ class Announcement(models.Model):
         # Функция для вывода короткого описания объявления
         gender_clear = "Парень" if self.gender == "M" else "Девушка"
         interlocutor_clear = "парня" if self.interlocutor == "M" else "девушку" if self.interlocutor == "F" else "пару"
-        purpose_of_acquaintance_clear = "для секса" if self.purpose_of_acquaintance == "SEX" else "для виртуального " \
-                                                                                                  "общения" \
-            if self.purpose_of_acquaintance == "VIRTUAL" else "для совместного путешествия" \
+        purpose_of_acquaintance_clear = "для секса" \
+            if self.purpose_of_acquaintance == "SEX" else "для виртуального общения" \
+            if self.purpose_of_acquaintance == "VTL" else "для совместного путешествия" \
             if self.purpose_of_acquaintance == "TRV" else "для серьезных отношений" \
             if self.purpose_of_acquaintance == "ROM" else ""
 
         return f"{gender_clear} {calculate_age(self.dob)} года ищет {interlocutor_clear}" \
-               f" {purpose_of_acquaintance_clear} из города {self.city}"
+               f"{purpose_of_acquaintance_clear} из города {self.city}"

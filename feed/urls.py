@@ -1,6 +1,6 @@
 from django.urls import path
 from feed.views import ConfirmView, SettingView, CreateAdView, AdView, AnnouncementListView, AnnouncementDetail, checkAdView, filterAdView, city_auto_complete, \
-    index, create_chat
+    index, create_chat, discharge_settings
 
 urlpatterns = [
     path('', index, name="mianto"),
@@ -13,6 +13,7 @@ urlpatterns = [
     path('autocomplate-city/', city_auto_complete, name='autocomplate-city'),
     path('<str:gander>-<str:interlocutor>/<int:from_age>-<int:to_age>/<int:id_purpose>'
          '/<int:code_country>-<int:code_city>/', filterAdView, name='miantofilterad'),
+    path('settings/discharge/', discharge_settings, name='miantofilterdischarge'),
     # API
     path('api/announce/', AnnouncementListView.as_view(), name='miantoapiadview'),
     path('api/announce/<int:pk>/', AnnouncementDetail.as_view(), name='miantoapiadetail'),

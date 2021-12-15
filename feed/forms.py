@@ -36,7 +36,8 @@ class SettingsForm(forms.ModelForm):
                 Column('to_age', css_class='form-group col-md-4 mb-0'),
                 css_class='form-row'),
             Row(Column('city', css_class='form-group col-md-8 mb-0'), css_class='form-row'),
-            Submit('submit', 'Применить настройки')
+            Submit('submit', 'Применить настройки'),
+            HTML("<a class='btn btn-primary' href='{% url \"miantofilterdischarge\" %}'>Сброс настроек")
         )
 
 
@@ -49,9 +50,6 @@ class CreateAdForm(forms.ModelForm):
         model = Announcement
         fields = ['email', 'dob', 'text', 'gender', 'interlocutor', 'purpose_of_acquaintance',
                   'city']
-        widgets = {
-            'dob': DatePickerInput(format="YYYY-MM-DD"),
-        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

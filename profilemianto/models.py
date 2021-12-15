@@ -46,8 +46,8 @@ class ProfileMianto(AbstractBaseUser):
     is_admin = models.BooleanField(default=False, verbose_name="Права администратора")
     is_staff = models.BooleanField(default=False, verbose_name="Права доступа")
 
-    USERNAME_FIELD = 'login'
-    REQUIRED_FIELDS = ['email', ]
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['login', ]
 
     objects = ProfileManager()
 

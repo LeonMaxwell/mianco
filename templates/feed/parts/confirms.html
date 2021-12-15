@@ -18,5 +18,19 @@
     <button type="submit" class="btn btn-primary custom-btn" name="access" value="allowed">Да, мне есть 18 лет</button>
     <button type="submit" class="btn btn-primary custom-btn" name="access" value="forbidden">Нет, мне нет 18 лет</button>
 </form>
+    <div id="msg_pop">
+        <h4>Ваша конфиденциальность</h4>
+        <p>Мы используем файлы cookie. Продолжая пользоваться сайтом, вы даете согласие на их использование.</p>
+</div>
 
+{% endblock %}
+
+{% block script %}
+<script>
+
+    let delay_popup = 0;
+    let msg_pop = document.getElementById('msg_pop');
+    setTimeout("document.getElementById('msg_pop').style.display='block';document.getElementById('msg_pop').className += 'fadeIn';", delay_popup);
+
+</script>
 {% endblock %}

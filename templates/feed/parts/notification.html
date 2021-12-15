@@ -1,0 +1,23 @@
+{% extends 'feed/index.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'mianto/notification/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'mianto/notification/css/media.css' %}">
+{% endblock %}
+
+
+{% block content %}
+    <img id="logos" src="{% static 'mianto/feed/img/logo.png' %}" alt="logo">
+    {% if is_things == 'crete_ad' %}
+        <h1> Вы успешно отправили заявку для создании объявления!</h1>
+        <p>На вашу почту прейдет письмо с ссылкой для того что бы вы подтвердили созданное ваше объявление. Если письмо не пришло посмотрите в папке спам</p>
+    {% elif is_things == 'create_profile' %}
+        <h1> Вы успешно отправили данные для регистрации пользователя!</h1>
+        <p>На вашу почту прейдет письмо с ссылкой для того что бы вы подтвердили свои переданные данные. Если письмо не пришло посмотрите в папке спам</p>
+    {% elif is_things == 'create_answer'%}
+        <h1> Вы успешно отправили ответ на объявление!</h1>
+        <p>Ваше сообщение было отправлено пользователю создавшего объявление на почту.</p>
+    {% endif %}
+    <a href="/" class="btn btn-primary custom-btn">Понятно</a>
+{% endblock content %}

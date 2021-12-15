@@ -25,7 +25,7 @@ class LoginAPIView(APIView):
     def post(self, request, *args, **kwargs):
         serializer = LoginProfileSerializer(data=request.data, context={'request': request})
         serializer.is_valid(raise_exception=True)
-        user = serializer.validated_data['login']
+        user = serializer.validated_data['email']
         login(request, user)
         token, created = Token.objects.get_or_create(user=user)
         return Response({"status": status.HTTP_200_OK, "Token": token.key})
@@ -136,7 +136,7 @@ class LoginProfileView(FormView):
     def form_valid(self, form):
         if form.is_valid():
             cd = form.cleaned_data
-            user = authenticate(login=cd['username'], password=cd['password'])
+            user = authenticate(email=cd['email'], password=cd['password'])
             if user is not None:
                 if user.is_admin:
                     login(self.request, user)
@@ -145,10 +145,10 @@ class LoginProfileView(FormView):
                     login(self.request, user)
                     return HttpResponseRedirect(f"/profile/{user.pk}/feed/")
                 else:
-                    form.add_error("username", "Нет доступа к профилю.")
+                    form.add_error("email", "Нет доступа к профилю.")
                     return render(self.request, self.template_name, {"form": form})
             else:
-                form.add_error("username", "Такого пользователя не существует")
+                form.add_error("email", "Такого пользователя не существует")
                 return render(self.request, self.template_name, {"form": form})
 
 
@@ -169,7 +169,7 @@ class RegisterProfileView(FormView):
             profile.gender = form.data['gender']
             profile.dob = form.data['dob']
             profile.save()
-            return HttpResponseRedirect("/")
+            return render(self.request, 'feed/parts/notification.html', {'is_things': "create_answer"})
 
 
 class SettingsProfileView(UpdateView):

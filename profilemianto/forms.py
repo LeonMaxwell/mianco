@@ -9,14 +9,14 @@ class LoginProfileForm(forms.Form):
     """
     Класс форм для входа в профиль
     """
-    username = forms.CharField(label="Логин")
+    email = forms.EmailField(label="Электронная почта")
     password = forms.CharField(label="Пароль", widget=forms.PasswordInput)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            Row(Column('username', css_class='form-group col-md-4 md-0'), css_class='form-row'),
+            Row(Column('email', css_class='form-group col-md-4 md-0'), css_class='form-row'),
             Row(Column('password', css_class='form-group col-md-4 mb-0'), css_class='form-row'),
             Submit('submit', "Войти"),
             HTML("<a class='btn btn-primary' href='{% url \"profileregister\" %}'>Регистрация")
@@ -32,7 +32,6 @@ class RegisterProfileForm(forms.ModelForm):
         model = ProfileMianto
         fields = ['login', 'password', 'email', 'dob', 'gender', 'avatar']
         widgets = {
-            'dob': DatePickerInput(format="YYYY-MM-DD"),
             'password': forms.PasswordInput(),
         }
 
@@ -63,7 +62,6 @@ class UpdateProfileForm(forms.ModelForm):
         model = ProfileMianto
         fields = ['login', 'email', 'gender', 'avatar']
         widgets = {
-            'dob': DatePickerInput(format="YYYY-MM-DD"),
             'password': forms.PasswordInput(),
         }
 

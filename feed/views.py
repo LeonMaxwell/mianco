@@ -125,6 +125,7 @@ def formation_of_ad_repository(gander=None, interlocutor=None,
     ad_premium = list()
     ad_common = list()
     ad_data = list()
+    filter_is = False
     if gander is None and interlocutor is None and from_age is None and to_age is None and id_purpose is None and \
             code_country is None and code_city is None:
         ads = Announcement.objects.order_by("-created_at")
@@ -147,10 +148,11 @@ def formation_of_ad_repository(gander=None, interlocutor=None,
                         date.today().replace(year=date.today().year - from_age)),
             gender=gander, interlocutor=interlocutor,
             purpose_of_acquaintance=name_purpose, city=city)
+        filter_is = True
 
     # Конструкция при которой мы перебираем все проверенные и активные объявления
     for ad in ads:
-        if ad.is_active and ad.is_checked:
+        if ad.is_active:
             if ad.is_prime:
                 # В отдельный список перемещаем объявления оплаченные
                 ad_premium.append(ad)
@@ -167,12 +169,20 @@ def formation_of_ad_repository(gander=None, interlocutor=None,
     for data in ad_data:
         for ad in ad_common:
             if ad.created_at.strftime("%d %B %Y") == data:
-                if len(ad_store) == 1 or len(ad_store) == 0:
-                    ad_store.update({"data": {data: [ad]}})
-                elif data in ad_store['data']:
-                    ad_store['data'][data].append(ad)
+                if filter_is:
+                    if len(ad_store) == 0:
+                        ad_store.update({"data": {data: [ad]}})
+                    elif data in ad_store['data']:
+                        ad_store['data'][data].append(ad)
+                    else:
+                        ad_store['data'].update({data: [ad]})
                 else:
-                    ad_store['data'].update({data: [ad]})
+                    if len(ad_store) == 1 or len(ad_store) == 0:
+                        ad_store.update({"data": {data: [ad]}})
+                    elif data in ad_store['data']:
+                        ad_store['data'][data].append(ad)
+                    else:
+                        ad_store['data'].update({data: [ad]})
     return ad_store
 
 
@@ -212,6 +222,13 @@ class SettingView(FormView):
             return HttpResponseRedirect("/")
 
 
+def discharge_settings(request):
+    if request.session['confirm'] == "filter":
+        request.session['confirm'] = "access"
+        request.session['url'] = ""
+    return HttpResponseRedirect("/")
+
+
 class CreateAdView(FormView):
     """ Класс при котором выводится форма для создания объявления. После успешного создания переадресовывается на
      предыдущую страницу."""
@@ -240,7 +257,7 @@ class CreateAdView(FormView):
                 profile_feed.profile = self.request.user
                 profile_feed.ad = ad
                 profile_feed.save()
-            return HttpResponseRedirect("/")
+            return render(self.request, 'feed/parts/notification.html', {'is_things': "crete_ad"})
 
 
 def create_chat(request, pk):
@@ -352,7 +369,7 @@ class AdView(FormView):
                       f"общаться, вот email пользователя который вам ответил {form.data['email']}",
                       f"leo.urabaros@gmail.com", [f'{an_email}'], fail_silently=False)
 
-            return HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
+            return render(self.request, 'feed/parts/notification.html', {'is_things': "create_profile"})
 
 
 def index(request):

@@ -17,25 +17,10 @@
     }
 
     .btn-primary.custom-btn{
-        margin-left: -5%;
         margin-right: 10%;
         font-size: 1.2vh;
     }
 
-        #msg_pop{
-        width: 45%;
-        padding-left: 1%;
-        padding-top: 3%;
-        font-size: 1.2vh;
-    }
-
-    #msg_pop h4{
-        font-size: 1.5vh;
-    }
-
-    #msg_pop p{
-        font-size: 1.2vh;
-    }
 }
 
 @media screen and (max-width: 768px) {
@@ -50,32 +35,8 @@
     }
 
     h1, p{
-        font-size: 2vw;
+        font-size: 1.7vw;
     }
-
-    .formCheck{
-        margin-left: 10%;
-    }
-
-    .btn-primary.custom-btn{
-        margin-left: 5%;
-    }
-
-    #msg_pop{
-        width: 45%;
-        padding-left: 1%;
-        padding-top: 3%;
-        font-size: 1.2vh;
-    }
-
-    #msg_pop h4{
-        font-size: 1.5vh;
-    }
-
-    #msg_pop p{
-        font-size: 1.2vh;
-    }
-
 }
 
 
@@ -90,16 +51,6 @@
         margin-top: 10%;
     }
 
-    #msg_pop{
-        width: 30%;
-    }
-    #msg_pop h4{
-        font-size: 1.5vw;
-    }
-
-    #msg_pop p{
-        font-size: 1.2vw;
-    }
 }
 
 @media screen and (max-width: 1200px) {
@@ -117,31 +68,15 @@
     #logos {
         width: 17%;
         margin-left: 40%;
-        margin-top: 5%;
+        margin-top: 10%;
     }
 
     h1, p{
-        font-size: 1.5vw;
-    }
-
-    .formCheck{
-        margin-left: 35%;
+        font-size: 2vw;
     }
 
     .btn-primary.custom-btn{
-        font-size: 1.5vw;
-    }
-
-    #msg_pop{
-        width: 20%;
-    }
-
-    #msg_pop h4{
-        font-size: 1vw;
-    }
-
-    #msg_pop p{
-        font-size: 0.8vw;
+        font-size: 2vw;
     }
 
 }

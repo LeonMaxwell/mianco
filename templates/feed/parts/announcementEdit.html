@@ -8,7 +8,7 @@
 
 {% block content %}
     <div class="block_ad">
-        <p id="title_ad"><b>Объявление №{{ ads.pk }}: {{ ads.short_description_for_ad }}</b></p>
+        <p id="title_ad"><b>{{ ads.short_description_for_ad }}</b></p>
         <br/>
         <div class="block_content">
             <p id="ad_text">{{ ads.text }}</p>
