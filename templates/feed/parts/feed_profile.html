@@ -12,22 +12,25 @@
     {% include 'feed/parts/navigations.html' %}
 
     {% include 'feed/parts/navigationProfile.html' %}
-    <ul class="liplok">
-        {% for foo in profile_ad %}
-            {% if foo.ad.is_prime %}
-                <li class="premium">
-            {% else %}
-                <li>
-            {% endif %}
-                <a href="{% url 'checkadview' pk=foo.ad.pk uuid_ad=foo.ad.uuid_ad %}">
-                    {% if foo.ad.is_prime %}
-                        <img id="ad_crown" src="{% static 'mianto/feed/img/crown.svg' %}" alt="prem">
-                    {% endif %}
-                    <p id="part_data">{{ foo.ad.correct_data }}</p>
-                    <p id="part_text">{{ foo.ad.text }}</p>
-                    <p id="part_description">{{ foo.ad.ad_description }}</p>
-                </a>
-            </li>
-        {% endfor %}
-    </ul>
+    <div class="ribbon">
+        <ul class="liplok">
+            {% for foo in profile_ad %}
+                {% if foo.ad.is_prime %}
+                    <li class="premium">
+                {% else %}
+                    <li>
+                {% endif %}
+                    <a href="{% url 'checkadview' pk=foo.ad.pk uuid_ad=foo.ad.uuid_ad %}">
+                        {% if foo.ad.is_prime %}
+                            <img id="ad_crown" src="{% static 'mianto/feed/img/crown.svg' %}" alt="prem">
+                        {% endif %}
+                        <p id="part_data">{{ foo.ad.correct_data }}</p>
+                        <p id="part_text">{{ foo.ad.text }}</p>
+                        <p id="part_description">{{ foo.ad.ad_description }}</p>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% include 'feed/parts/footer.html' %}
 {% endblock content %}

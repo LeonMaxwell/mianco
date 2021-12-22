@@ -19,7 +19,11 @@ app.conf.beat_schedule = {
     'myFirstTask': {
         'task': 'feed.tasks.clearing_old_ad',
         'schedule': crontab(hour=21, minute=00),
-    }
+    },
+    'premiumLost': {
+        'task': 'feed.tasks.expiration_time_premium',
+        'schedule': 60,
+    },
 }
 
 # Загрузка модулей задач из всех зарагестрированных приложений

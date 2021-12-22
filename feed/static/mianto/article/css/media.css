@@ -1,0 +1,54 @@
+@media screen and (max-width: 480px) {
+    /*
+        Расшиерение для телефонов
+    */
+    article{
+        height: 87vh;
+    }
+
+    article h1, h2{
+        font-size: 2vh;
+    }
+
+    article p{
+        font-size: 1.1vh;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    /*
+        Расшиерение для планшетов
+    */
+
+    article{
+        height: 87vh;
+    }
+
+    article h1, h2{
+        font-size: 2vh;
+    }
+
+    article p{
+        font-size: 1.1vh;
+    }
+
+}
+
+@media screen and (max-width: 1024px) {
+    /*
+        Расшиерение для ноутбуки
+    */
+}
+
+@media screen and (max-width: 1200px) {
+    /*
+        Расшиерение для больших экранов
+    */
+}
+
+@media screen and (min-width: 1367px) {
+    /*
+        Расшиерение для телевизрово
+    */
+
+}

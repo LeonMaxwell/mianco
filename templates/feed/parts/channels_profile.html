@@ -12,17 +12,19 @@
     {% include 'feed/parts/navigations.html' %}
 
     {% include 'feed/parts/navigationProfile.html' %}
-
-    <ul class="liplok">
-        {% for foo in channel %}
-            <li>
-                <a href="{% url 'profileroom' pk=prof.pk id_messages=foo.uuid_channel %}">
-                    <p id="part_data">{{ foo.created_at }}</p>
-                    <p id="part_text">Чат №{{ foo.pk }}</p>
-                    <p id="part_description">Собеседник: {{ foo.second_interlocutor.login }}</p>
-                </a>
-            </li>
-        {% endfor %}
-    </ul>
+    <div class="ribbon">
+        <ul class="liplok">
+            {% for foo in channel %}
+                <li>
+                    <a href="{% url 'profileroom' pk=prof.pk id_messages=foo.uuid_channel %}">
+                        <p id="part_data">{{ foo.created_at }}</p>
+                        <p id="part_text">Чат №{{ foo.pk }}</p>
+                        <p id="part_description">Собеседник: {{ foo.second_interlocutor.login }}</p>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% include 'feed/parts/footer.html' %}
 
 {% endblock content %}

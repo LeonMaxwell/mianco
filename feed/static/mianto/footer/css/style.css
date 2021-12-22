@@ -1,6 +1,27 @@
 footer{
-    padding-bottom: 1%;
+    padding-bottom: 0.5%;
     padding-top: 2%;
     padding-left: 2%;
     background-color: #eff1f4;
+}
+
+footer ul{
+    padding-left: 25%;
+}
+
+footer ul li{
+    display: inline;
+    padding-right: 3%;
+}
+
+footer ul li a{
+    margin-right: 5%;
+    font-family: Ubuntu, serif;
+    text-decoration: none;
+    color: #808080;
+    font-size: 1.1vw;
+}
+
+footer ul li a:hover {
+    color: rgba(94, 94, 94, 0.57);
 }

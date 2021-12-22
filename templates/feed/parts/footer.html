@@ -1,8 +1,12 @@
 {% load static %}
 {% block style %}
     <link rel="stylesheet" href="{% static 'mianto/footer/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'mianto/footer/css/media.css' %}">
 {% endblock style %}
-
 <footer>
-    <a></a>
+    <ul>
+        <li><a href="{% url 'miantoagreement' %}">Пользовательское соглашений</a></li>
+        <li><a href="{% url 'miantopolicy' %}">Конфиденциальность</a></li>
+        <li><a href="{% url 'miantoprice' %}">Price</a></li>
+    </ul>
 </footer>

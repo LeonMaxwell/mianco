@@ -12,6 +12,12 @@ def clearing_old_ad():
     print(now - timedelta(days=30))
 
 
+@app.task
+def expiration_time_premium():
+    now = timezone.now()
+    an = Announcement.objects.filter(finish_prime__lt=now + timedelta(hours=3)).update(is_prime=False, finish_prime=None)
+    print("Это очистка")
+
 """
 
 celery -A mianto worker -B

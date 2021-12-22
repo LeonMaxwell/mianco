@@ -146,7 +146,7 @@ def formation_of_ad_repository(gander=None, interlocutor=None,
         ads = ads.filter(
             dob__range=(date.today().replace(year=date.today().year - to_age),
                         date.today().replace(year=date.today().year - from_age)),
-            gender=gander, interlocutor=interlocutor,
+            gender=interlocutor, interlocutor=gander,
             purpose_of_acquaintance=name_purpose, city=city)
         filter_is = True
 
@@ -337,6 +337,18 @@ def filterAdView(request, gander, interlocutor, from_age, to_age, id_purpose, co
                                                               to_age, id_purpose, code_country, code_city)['data']})
         else:
             return render(request, 'feed/parts/feed.html')
+
+
+def agreement_view(request):
+    return render(request, 'feed/parts/article.html', {'type': 'agreement'})
+
+
+def policy_view(request):
+    return render(request, 'feed/parts/article.html', {'type': 'policy'})
+
+
+def price_view(request):
+    return render(request, 'feed/parts/article.html', {'type': 'price'})
 
 
 class AdView(FormView):

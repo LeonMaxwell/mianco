@@ -1,0 +1,24 @@
+.articleArea{
+    overflow-y: auto;
+    -ms-overflow-style: none;  /* IE 10+ */
+    scrollbar-width: none; /* Firefox */
+    display: flex;
+    height: 78vh;
+    flex-direction: column;
+}
+
+article{
+    padding-top: 3%;
+}
+
+article h1, h2{
+    text-align: center;
+    font-size: 2vw;
+}
+
+article p{
+    padding-left: 2%;
+    padding-right: 2%;
+    font-size: 1.1vw;
+}
+
