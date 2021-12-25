@@ -152,7 +152,7 @@ def formation_of_ad_repository(gander=None, interlocutor=None,
 
     # Конструкция при которой мы перебираем все проверенные и активные объявления
     for ad in ads:
-        if ad.is_active:
+        if ad.is_active and ad.is_confirm:
             if ad.is_prime:
                 # В отдельный список перемещаем объявления оплаченные
                 ad_premium.append(ad)
@@ -250,6 +250,7 @@ class CreateAdView(FormView):
             ad.text = form.data['text']
             ad.gender = form.data['gender']
             ad.interlocutor = form.data['interlocutor']
+            ad.purpose_of_acquaintance = form.data['purpose_of_acquaintance']
             ad.city = form.data['city']
             ad.save()
             if self.request.user.is_authenticated:
